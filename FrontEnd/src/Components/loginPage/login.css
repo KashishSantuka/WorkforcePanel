@@ -1,0 +1,87 @@
+html, body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: center;
+ }
+
+
+.wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+ }
+
+ .login-form {
+   background-color: #2a2a2a;
+   padding: 2rem;
+   border-radius: 8px;
+   width: 300px;
+ }
+
+ .flex-container {
+   text-align: center;
+   margin-bottom: 1.5rem;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+ }
+
+ .InputBox {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1.5rem;
+ }
+
+ .InputBox label {
+   margin-bottom: 0.5rem;
+   font-size: large;
+ }
+
+ .InputBox input {
+   background-color: rgb(64, 64, 64);
+   padding: 0.5rem;
+   margin-bottom: 1rem;
+   border: none;
+   border-radius: 4px;
+   color: black;
+ }
+
+ .InputBox button {
+   background-color: #4CAF50; 
+   color: white;
+   cursor: pointer;
+   margin-top: 5px;
+   padding: 0.5rem;
+   border: none;
+   border-radius: 4px;
+   width: 100%;
+   font-size: 1.2rem;
+   transition: background-color 0.3s ease; 
+}
+
+.InputBox button:hover {
+  background-color: #3c913f;
+}
+
+ .flex-end {
+    text-align: center; 
+ }
+
+ .flex-end a {
+   margin-bottom: 1px;
+   font-size: small;
+   color: #4CAF50;
+   cursor: pointer;
+ }
+
+ .flex-end h3 {
+   margin-top: -2px;
+   font-size: small;
+ }
+
+ .flex-end a {
+   color: #4CAF50;
+   text-decoration: none;
+   padding-left: 3px;
+ }

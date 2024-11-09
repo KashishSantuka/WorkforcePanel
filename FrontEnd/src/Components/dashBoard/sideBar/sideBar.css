@@ -1,0 +1,47 @@
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    background-color: antiquewhite;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.LeftSection {
+    display: flex;
+    gap: 20px;
+    flex:1;
+    margin-left: 0;
+     padding-left: 0;
+  }
+
+  .LeftSection a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  .RightSection {
+    display: flex;
+    align-items: center;
+  }
+
+
+.RightSection h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .RightSection a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
