@@ -20,7 +20,7 @@ const EmployeList = () => {
     const fetchEmployees = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/create/employee/get"
+          "https://workforcepanel.onrender.com/create/employee/get"
         );
 
         console.log(response);
@@ -43,7 +43,7 @@ const EmployeList = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/create/employee/delete/${id}`,
+        `https://workforcepanel.onrender.com/create/employee/delete/${id}`,
         {
           method: "DELETE",
         }

@@ -34,7 +34,7 @@ const CreateEmploye = () => {
     formData.append("imgUpload", userDetails.imgUpload); 
 
     try {
-      const response = await fetch("http://localhost:3000/create/employee", {
+      const response = await fetch("https://workforcepanel.onrender.com/create/employee", {
         method: "POST",
         body: formData,
       });

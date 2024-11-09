@@ -41,7 +41,7 @@ app.use(
   })
 );
 
-app.use(cors(corsOption));
+// app.use(cors(corsOption));
 app.use("/users", userRoutes);
 app.use("/create", createRoutes);
 app.use("/uploads", express.static("uploads"));

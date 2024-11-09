@@ -88,7 +88,7 @@ const changeHandler = (e) => {
       const Id = formData._id;
       console.log({updatedEmployee:updatedData})
       const response = await fetch(
-        `http://localhost:3000/create/employee/edit/${Id}`,
+        `https://workforcepanel.onrender.com/create/employee/edit/${Id}`,
         {
           method: "PUT",
           headers: {
