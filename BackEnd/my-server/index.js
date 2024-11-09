@@ -19,7 +19,7 @@ app.use(express.json());
 // });
 
 const allowedOrigins = [
-  "https://workforcepanel.netlify.app",
+  "https://workforcepanel-1.onrender.com",
   "http://localhost:5173",
   "http://localhost:3000",
 ];
