@@ -3,7 +3,7 @@ import "./login.css";
 import { useState, useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./login.css";
 
 const Login = () => {
   const initialValues = { email: "", password: "" };
