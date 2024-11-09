@@ -1,11 +1,14 @@
 import express from "express";
 import cors from "cors";
 import connectDB from "./db.js";
+import dotenv from "dotenv"
 import userRoutes from "./routes/User.js";
 import createRoutes from "./routes/Create.js";
 
 const app = express();
 app.use(express.json());
+dotenv.config();
+
 
 // const corsOption = {
 //   origin: "http://localhost:5173",
