@@ -99,7 +99,7 @@ const Login = () => {
           <div className="flex-end">
             <a href="/forgotPassword">Forgot Password?</a>
             <h3>
-              Don't have an account? <a href="/signUp">SignUp</a>
+              Don't have an account? <a href="/signup">SignUp</a>
             </h3>
           </div>
         </form>
