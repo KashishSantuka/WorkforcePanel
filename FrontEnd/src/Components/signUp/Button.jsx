@@ -36,7 +36,7 @@ export const Button = ({ label, formValues, setFormErrors, setIsSubmit }) => {
     setFormErrors(validate(formValues));
 
     try {
-      const data = await fetch("http://localhost:3000/users/register", {
+      const data = await fetch("https://workforcepanel.onrender.com/users/register", {
         method: "POST",
         body: JSON.stringify({
           username: formValues.username,
