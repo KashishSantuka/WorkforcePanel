@@ -29,13 +29,7 @@ const Login = () => {
     });
   };
 
-   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputValues({
-      ...inputValues,
-      [name]: value,
-    });
-  };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
