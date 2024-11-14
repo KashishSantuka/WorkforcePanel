@@ -29,11 +29,20 @@ const Login = () => {
     });
   };
 
+   const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputValues({
+      ...inputValues,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = async (e) => {
-    console.log("hello");
     e.preventDefault();
+    setError(null)
+    
     try {
-      const response = await fetch("http://localhost:3000/users/login", {
+      const response = await fetch("https://workforcepanel.onrender.com/users/login", {
         method: "POST",
         body: JSON.stringify({
           email: inputValues.email,
@@ -43,14 +52,14 @@ const Login = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log("hello");
+      
       console.log(response);
 
       if (!response.ok) {
-        const error = new Error("HTTP error!");
-        error.status = response.status;
-        error.response = response;
-        throw error;
+        const errorData = await response.json();
+        setError(errorData.error || "An unexpected error occurred"); // Display backend error message
+        return;
+
       }
 
       const responseData = await response.json();
@@ -62,7 +71,7 @@ const Login = () => {
       setIsSubmit(true);
       console.log("User registered successfully:", responseData);
     } catch (error) {
-      throw new Error(`Registration failed: ${error.message}`);
+      setError(`Registration failed: ${error.message}`);
     }
   };
 
