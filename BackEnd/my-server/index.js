@@ -10,17 +10,6 @@ app.use(express.json());
 dotenv.config();
 
 
-// const corsOption = {
-//   origin: "http://localhost:5173",
-//   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-//   credentials: true,
-// };
-// app.use((err, req, res, next) => {
-//   const status = err.statusCode || 500;
-//   const message = err.message || "An unexpected error occurred.";
-//   res.status(status).json({ message });
-// });
-
 const allowedOrigins = [
   "https://workforcepanel-1.onrender.com",
   "http://localhost:5173",
@@ -52,8 +41,8 @@ app.use("/uploads", express.static("uploads"));
 const startServer = async () => {
   try {
     await connectDB();
-    // const port = process.env.PORT || 3000,
-    app.listen(3000, () => {
+    const port = process.env.PORT || 3000,
+    app.listen(port, () => {
       console.log("App is running on port 3000");
     });
   } catch (error) {
