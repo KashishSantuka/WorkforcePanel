@@ -9,6 +9,7 @@ const Login = () => {
   const initialValues = { email: "", password: "" };
   const [inputValues, setInputValues] = useState(initialValues);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
