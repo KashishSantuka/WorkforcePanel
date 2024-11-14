@@ -5,54 +5,48 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-
-
 const login = async (req, res, next) => {
-  console.log("hello")
   const { email, password } = req.body;
   console.log(req.body);
 
   if (!email || !password) {
-    return res.status(400).json({ message: "Email and password are required." });
+    return res
+      .status(400)
+      .json({ message: "Email and password are required." });
   }
 
   try {
     const formattedEmail = email.toLowerCase();
-    const findedUser = await User.findOne({ email: formattedEmail });
-    if (!findedUser) {
-      const error = new Error("no user found");
-      error.statusCode = 404;
-      throw error;
+    const findUser = await User.findOne({ email: formattedEmail });
+
+    if (!findUser) {
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const isPassMatch = await bcrypt.compare(password, findedUser.password);
+    const isPassMatch = await bcrypt.compare(password, findUser.password);
 
     if (!isPassMatch) {
-      const error = new Error("Password is not correct");
-      error.statusCode = 401;
-      throw error;
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     const accessToken = jwt.sign(
       {
         email: formattedEmail,
-        userId: findedUser._id,
+        userId: findUser._id,
       },
       process.env.Secret_Key,
       { expiresIn: "2hr" }
     );
 
-
     res.status(200).json({
-        message: "Success",
-        status: true,
-        token: accessToken,
-    })
+      message: "Success",
+      status: true,
+      token: accessToken,
+    });
   } catch (error) {
-    const err = new Error(error.message);
-    err.statusCode = 500;
-    throw error;
+    res.status(500).json({ message: error.message || "Internal Server Error" });
   }
 };
+
 
 export default login;
