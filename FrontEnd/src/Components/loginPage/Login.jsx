@@ -105,6 +105,7 @@ const Login = () => {
                Don't have an account? <Link to="/signup">SignUp</Link>
             </h3>
           </div>
+          <div>{error && <h4>{error}</h4>}</div>
         </form>
       </div>
     </div>
