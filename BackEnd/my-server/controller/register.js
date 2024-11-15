@@ -30,7 +30,8 @@ const register = async (req, res, next) => {
     const formattedEmail = email.toLowerCase();
 
     const findUser = await User.findOne({ email: formattedEmail });
-   if (findUser) {
+ 
+    if (!findUser) {
   return res.status(400).json({
     success: false,
     message: "This Email Already Exist",
