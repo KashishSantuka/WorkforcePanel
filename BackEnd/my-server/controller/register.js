@@ -21,12 +21,13 @@ const register = async (req, res, next) => {
   const { username, email, password } = req.body;
 
   try {
-   if (validationError) {
-      console.error("Validation Error:", validationError.details);
-      return res.status(400).json({
-      error: validationError.details.map((detail) => detail.message), // Return all validation errors
-      });
-    }
+    if (validationError) {
+    console.error("Validation Error Details:", validationError.details); // Log full error details
+    return res.status(400).json({
+      message: "Validation failed",
+      errors: validationError.details.map((detail) => detail.message), // Return all validation error messages
+    });
+  }
 
     const formattedName = username.toLowerCase();
     const formattedEmail = email.toLowerCase();
