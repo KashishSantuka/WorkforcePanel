@@ -13,9 +13,9 @@ dotenv.config();
 const allowedOrigins = [
   "https://workforcepanel-1.onrender.com",
   "http://localhost:5173",
-  "https://your-new-deployed-url.com",
+  "https://workforcepanel.onrender.com",
   "http://localhost:3000",
-];
+];    
 
 app.use(
   cors({
