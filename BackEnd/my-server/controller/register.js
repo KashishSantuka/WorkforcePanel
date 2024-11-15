@@ -55,11 +55,11 @@ const register = async (req, res, next) => {
     
     const token = jwt.sign(
       { userId: savedUser._id, email: savedUser.email },
-      process.env.JWT_SECRET_KEY, 
+      process.env.Secret_Key, 
       { expiresIn: "1h" } 
     );
 
-    console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
+    console.log("JWT_SECRET_KEY:", process.env.Secret_Key);
     
     res.status(200).json({
       message: "user registered suucessfully",
