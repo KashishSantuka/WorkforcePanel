@@ -48,7 +48,7 @@ export const Button = ({ label, formValues, setFormErrors, setIsSubmit }) => {
         },
       });
 
-      console.log(data);
+      console.log({data:data});
 
       if (!data.ok) {
         const error = new Error("HTTP error!");
