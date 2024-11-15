@@ -59,6 +59,8 @@ const register = async (req, res, next) => {
       { expiresIn: "1h" } 
     );
 
+    console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
+    
     res.status(200).json({
       message: "user registered suucessfully",
       status: true,
