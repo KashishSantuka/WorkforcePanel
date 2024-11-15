@@ -62,8 +62,11 @@ const register = async (req, res, next) => {
       token: token
     });
   } catch (error) {
-    console.error('Registration error:', error);
-    res.status(500).json({ message: 'Registration failed', error });
+   console.error('Registration error:', error);  // This will log the actual error
+    res.status(500).json({
+      message: "Registration failed",
+      error: error.message || error 
+    })
   }
 };
 
