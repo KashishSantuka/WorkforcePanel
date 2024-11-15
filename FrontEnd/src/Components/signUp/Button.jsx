@@ -51,7 +51,8 @@ export const Button = ({ label, formValues, setFormErrors, setIsSubmit }) => {
       console.log({data:data});
 
       if (!data.ok) {
-        const error = new Error("HTTP error!");
+        const errorData = await data.json();
+        const error = new Error("HTTP error: ${errorData.message || 'Unknown error'}");
         error.status = data.status;
         error.data = data;
         throw error;
