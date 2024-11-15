@@ -10,7 +10,7 @@ function validationUser(data) {
     password: joi.string().min(6).max(12).required(),
   });
 
-  return userSchema.validate(data);
+  return userSchema.validate(data, { abortEarly: false }); 
 }
 
 const register = async (req, res, next) => {
