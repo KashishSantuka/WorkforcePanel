@@ -14,6 +14,7 @@ function validationUser(data) {
 }
 
 const register = async (req, res, next) => {
+  console.log("Hello");
   console.log("Received data on /register:", req.body);
 
   const { error: validationError } = validationUser(req.body);
