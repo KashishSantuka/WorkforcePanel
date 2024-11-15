@@ -30,11 +30,14 @@ const register = async (req, res, next) => {
     const formattedEmail = email.toLowerCase();
 
     const findUser = await User.findOne({ email: formattedEmail });
-    if (findUser) {
-      const error = new Error("This Email Already Exist");
-      error.statusCode = 400;
-      throw error;
-    }
+   if (findUser) {
+  return res.status(400).json({
+    success: false,
+    message: "This Email Already Exist",
+    statusCode: 400,
+  });
+}
+
 
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -58,7 +61,8 @@ const register = async (req, res, next) => {
       token: token
     });
   } catch (error) {
-    next(error);
+    console.error('Registration error:', error);
+    res.status(500).json({ message: 'Registration failed', error });
   }
 };
 
