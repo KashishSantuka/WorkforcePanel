@@ -14,12 +14,17 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static files from the correct frontend dist folder
-app.use(express.static(path.join(__dirname, "../FrontEnd/dist"))); // Adjust this path
+// // Serve static files from the correct frontend dist folder
+// app.use(express.static(path.join(__dirname, "../FrontEnd/dist"))); // Adjust this path
 
-// Catch-all route for React Router
+// // Catch-all route for React Router
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../FrontEnd/dist", "index.html")); // Adjust this path
+// });
+
+app.use(express.static("/opt/render/project/src/FrontEnd/dist"));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../FrontEnd/dist", "index.html")); // Adjust this path
+  res.sendFile("/opt/render/project/src/FrontEnd/dist/index.html");
 });
 
 
