@@ -29,5 +29,9 @@ function App() {
   );
 }
 
+// Router.run(routes, Router.HistoryLocation, function (Handler) {
+//   React.render(<Handler/>, document.body);
+// });
+
 export default App;
 
