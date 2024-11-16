@@ -17,10 +17,14 @@ const EmployeList = () => {
   });
 
   useEffect(() => {
-    const fetchEmployees = async () => {
+     const fetchEmployees = async () => {
       try {
         const response = await fetch(
-          "https://workforcepanel.onrender.com/create/employee/get"
+          "https://workforcepanel.onrender.com/create/employee/get",
+          {
+            method: "GET",
+            credentials: "include",  // Include cookies or credentials if necessary
+          }
         );
 
         console.log(response);
