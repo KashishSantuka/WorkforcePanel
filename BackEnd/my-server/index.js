@@ -51,17 +51,21 @@ app.use(
 app.use(express.static("/opt/render/project/src/FrontEnd/dist"));
 
 // Catch-all route for React Router
-app.get("*", (req, res) => {
-  res.sendFile("/opt/render/project/src/FrontEnd/dist/index.html");
-});
+app.use(cors(corsOption));
+app.use("/users", userRoutes);
+app.use("/create", createRoutes);
+app.use("/uploads", express.static("uploads"));
 
-// Start the server
-const PORT = process.env.PORT || 3000;
+const startServer = async () => {
+  try {
+    await connectDB();
+    const port = process.env.PORT || 3000; 
+    app.listen(port, () => {
+      console.log("App is running on port 3000");
+    });
+  } catch (error) {
+    console.error("Failed to start the server:", error);
+  }
+};
 
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
-  .catch((err) => {
-    console.error("Error connecting to the database:", err);
-  });
+startServer();
