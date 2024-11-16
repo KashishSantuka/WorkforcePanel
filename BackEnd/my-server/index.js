@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
 import connectDB from "./db.js";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import userRoutes from "./routes/User.js";
 import createRoutes from "./routes/Create.js";
 import path from "path";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 
 const app = express();
 app.use(express.json());
@@ -14,45 +14,14 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// // Serve static files from the correct frontend dist folder
-// app.use(express.static(path.join(__dirname, "../FrontEnd/dist"))); // Adjust this path
-
-// // Catch-all route for React Router
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../FrontEnd/dist", "index.html")); // Adjust this path
-// });
-
-app.use(express.static("/opt/render/project/src/FrontEnd/dist"));
-app.get("*", (req, res) => {
-  res.sendFile("/opt/render/project/src/FrontEnd/dist/index.html");
+// Logging middleware to see incoming requests
+app.use((req, res, next) => {
+  console.log(`Incoming request origin: ${req.headers.origin}`); // Logs request origin
+  console.log(`Request URL: ${req.url}`); // Logs request URL
+  next();
 });
 
-
-// const allowedOrigins = [
-//   "https://workforcepanel-1.onrender.com",
-//   "http://localhost:5173",
-//   "https://workforcepanel.onrender.com",
-//   "http://localhost:3000",
-// ];    
-
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.includes(origin)) {
-//         return callback(null, true);
-//       } else {
-//         const msg =
-//           "The CORS policy for this site does not allow access from the specified Origin.";
-//         return callback(new Error(msg), false);
-//       }
-//     },
-//      origin: true,
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
-
+// CORS Middleware
 const allowedOrigins = [
   "https://workforcepanel-1.onrender.com",
   "http://localhost:5173",
@@ -63,15 +32,13 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow if origin is null or included in allowedOrigins
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        console.error(`CORS blocked for origin: ${origin}`); // Log blocked origins
+        console.error(`Blocked by CORS: ${origin}`);
         callback(
-          new Error(
-            "The CORS policy for this site does not allow access from the specified Origin."
-          )
+          new Error("CORS policy does not allow access from this origin."),
+          false
         );
       }
     },
@@ -80,21 +47,21 @@ app.use(
   })
 );
 
-// app.use(cors(corsOption));
-app.use("/users", userRoutes);
-app.use("/create", createRoutes);
-app.use("/uploads", express.static("uploads"));
+// Serve static files from the frontend build folder
+app.use(express.static("/opt/render/project/src/FrontEnd/dist"));
 
-const startServer = async () => {
-  try {
-    await connectDB();
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-      console.log("App is running on port 3000");
-    });
-  } catch (error) {
-    console.error("Failed to start the server:", error);
-  }
-};
+// Catch-all route for React Router
+app.get("*", (req, res) => {
+  res.sendFile("/opt/render/project/src/FrontEnd/dist/index.html");
+});
 
-startServer();
+// Start the server
+const PORT = process.env.PORT || 3000;
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => {
+    console.error("Error connecting to the database:", err);
+  });
