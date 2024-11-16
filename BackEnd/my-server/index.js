@@ -14,10 +14,12 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, "dist")));
+// Serve static files from the correct frontend dist folder
+app.use(express.static(path.join(__dirname, "../FrontEnd/dist"))); // Adjust this path
 
+// Catch-all route for React Router
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../FrontEnd/dist", "index.html")); // Adjust this path
 });
 
 
