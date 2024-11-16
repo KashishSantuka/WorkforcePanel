@@ -51,7 +51,7 @@ app.use(
 app.use(express.static("/opt/render/project/src/FrontEnd/dist"));
 
 // Catch-all route for React Router
-app.use(cors(corsOption));
+// app.use(cors(corsOption));
 app.use("/users", userRoutes);
 app.use("/create", createRoutes);
 app.use("/uploads", express.static("uploads"));
