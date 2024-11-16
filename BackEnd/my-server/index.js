@@ -47,6 +47,7 @@ app.use(
         return callback(new Error(msg), false);
       }
     },
+     origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
