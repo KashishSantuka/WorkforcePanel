@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node my-server/index.js",
-    "build": "npm install && npm run start",
+    "build": "cd ../FrontEnd && npm install && npm run build && cd ../BackEnd && npm install && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kashish",
