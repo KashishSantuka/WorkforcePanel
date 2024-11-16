@@ -28,26 +28,53 @@ app.get("*", (req, res) => {
 });
 
 
+// const allowedOrigins = [
+//   "https://workforcepanel-1.onrender.com",
+//   "http://localhost:5173",
+//   "https://workforcepanel.onrender.com",
+//   "http://localhost:3000",
+// ];    
+
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       } else {
+//         const msg =
+//           "The CORS policy for this site does not allow access from the specified Origin.";
+//         return callback(new Error(msg), false);
+//       }
+//     },
+//      origin: true,
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
+
 const allowedOrigins = [
   "https://workforcepanel-1.onrender.com",
   "http://localhost:5173",
   "https://workforcepanel.onrender.com",
   "http://localhost:3000",
-];    
+];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
+    origin: (origin, callback) => {
+      // Allow if origin is null or included in allowedOrigins
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
       } else {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
+        console.error(`CORS blocked for origin: ${origin}`); // Log blocked origins
+        callback(
+          new Error(
+            "The CORS policy for this site does not allow access from the specified Origin."
+          )
+        );
       }
     },
-     origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
