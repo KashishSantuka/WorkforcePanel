@@ -5,6 +5,8 @@ import "./edit.css";
 
 Modal.setAppElement("#root");
 const EditButton = ({ employees, employeeData, deleteEmployee }) => {
+  console.log("Hi i am kasish");
+  console.log("Employedata:", employeeData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editId, setEditId] = useState(null);
 
