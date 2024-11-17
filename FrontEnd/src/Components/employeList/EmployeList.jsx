@@ -112,9 +112,6 @@ const EmployeList = () => {
                     <td>{new Date(employee.createdAt).toLocaleString()}</td>
                     <td>
                      <EditButton employees = {employees} employeeData={employee} deleteEmployee={handleDelete} />
-                      <button onClick={() => handleDelete(employee._id)}>
-                        Delete
-                      </button>
                     </td>
                   </tr>
                 );
