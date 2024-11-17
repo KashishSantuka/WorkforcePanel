@@ -111,7 +111,7 @@ const EmployeList = () => {
                     <td>{employee.courses}</td>
                     <td>{new Date(employee.createdAt).toLocaleString()}</td>
                     <td>
-                      <EditButton employeeData={employees}>Edit</EditButton>
+                     <EditButton employees = {employees} employeeData={employee} deleteEmployee={handleDelete} />
                       <button onClick={() => handleDelete(employee._id)}>
                         Delete
                       </button>
